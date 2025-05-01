@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 import BasicTable from "./component/BasicTable";
-import { CSVLink } from "react-csv";
+import { CSVLink, CSVDownload } from "react-csv";
 import { Button } from "@mui/material";
 
 function App() {
@@ -37,17 +37,21 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>Exporting Table Data to CSV in React</div>
-        <div>
+        <div className="export-button-container">
           {data && (
-            <CSVLink
-              data={data}
-              headers={headers}
-              filename={"table-data.csv"}
-              className="btn btn-primary"
-              target="_blank"
-            >
-              <Button>Export to CSV</Button>
-            </CSVLink>
+            <>
+              <Button variant="contained" color="primary">
+                <CSVLink
+                  data={data}
+                  headers={headers}
+                  filename={"table-data.csv"}
+                  className="btn btn-primary"
+                  target="_blank"
+                >
+                  Export to CSV
+                </CSVLink>
+              </Button>
+            </>
           )}
         </div>
       </header>
