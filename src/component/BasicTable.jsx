@@ -1,29 +1,31 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import "../App.css";
 
-const BasicTable = () => {
-  const rows = [
-    { name: 'John', age: 28, city: 'New York' },
-    { name: 'Anna', age: 22, city: 'London' },
-    { name: 'Mike', age: 32, city: 'Paris' },
-  ];
+const BasicTable = ({ data, headers }) => {
+  if (!data || data.length === 0) {
+    return <div>No data available</div>;
+  }
+
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="tableStyles">
       <Table>
-        <TableHead>
+        <TableHead className="tableHeadStyles">
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Age</TableCell>
-            <TableCell>City</TableCell>
+            {headers.map((header) => (
+              <TableCell key={header.key}>{header.label}</TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.age}</TableCell>
-              <TableCell>{row.city}</TableCell>
+          {data.map((row, rowIndex) => (
+            <TableRow key={rowIndex} className="tableRowStyles">
+              {headers.map((header) => (
+                <TableCell key={header.key} className="tableCellStyles">
+                  {header.key.split('.').reduce((acc, key) => acc && acc[key], row)}
+                </TableCell>
+              ))}
             </TableRow>
           ))}
         </TableBody>
