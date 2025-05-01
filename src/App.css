@@ -51,6 +51,16 @@
   padding: 4px ; /* Adjust padding for cells */
   text-align: left; /* Align text to the left */
 }
+.export-button-container {
+  display: flex;
+  justify-content: flex-end; /* Move the button to the right */
+  margin: 10px 20px; /* Add some spacing */
+}
+
+.csv-link {
+  text-decoration: none; /* Remove underline from the link */
+  color: white; /* Ensure the text color matches the button */
+}
 .App-content {
   display: flex;
   padding: 0 20px;
